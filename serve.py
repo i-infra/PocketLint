@@ -11,6 +11,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             printer_buffer.append(line)
         createPocketLint.main(printer)
         self.send_response(200)
+        self.send_header('Content-Type', 'text/plain; charset=UTF-8')
         self.end_headers()
         for line in printer_buffer:
             self.wfile.write(line.encode()+b'\r\n')
